@@ -28,13 +28,11 @@ const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 
-const _ = ExtensionUtils.gettext;
-
 const STATUS = { error: -1, unknown: 0, connected: 1, disconnected: 2 };
 
 const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button {
     _init() {
-        super._init();
+        super._init(0.0);
         this._settings = Convenience.getSettings();
 
         this._ip = "";
@@ -62,8 +60,10 @@ const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button
 
         /* Start Menu */
 
-        this.vpnSwitch = new PopupMenu.PopupSwitchMenuItem('...', { active: true });
-        this.vpnSwitch.setToggleState(false);
+        this.vpnSwitch = new PopupMenu.PopupSwitchMenuItem('...', {
+            active: true,
+            toggleState: false,
+        });
         this.vpnSwitch.connect('toggled', this._toggleSwitch.bind(this));
         this.menu.addMenuItem(this.vpnSwitch);
 
@@ -87,12 +87,6 @@ const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button
         this._settings.connect('changed', this._settingsChanged.bind(this));
         this._settingsChanged();
         this._update();
-
-        // let item = new PopupMenu.PopupMenuItem(_('Show Notification'));
-        // item.connect('activate', () => {
-        //     Main.notify(_('Whatʼs up, folks?'));
-        // });
-        // this.menu.addMenuItem(item);
     }
 
     _toggleSwitch(widget, value) {
@@ -114,7 +108,6 @@ const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button
 class Extension {
     constructor(uuid) {
         this._uuid = uuid;
-        Convenience.initTranslations();
     }
 
     enable() {
