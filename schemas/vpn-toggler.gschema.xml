@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="custom-vpn-toggler@rheddes.nl">
+    <schema path="/nl/rheddes/custom-vpn-toggler/" id="nl.rheddes.custom-vpn-toggler">
+        <key name="vpn" type="s" >
+            <default>""</default>
+            <summary>VPN script</summary>
+            <description>Select VPN command to be use by extension.</description>
+        </key>
+        <key name="checktime" type="u" >
+            <default>1</default>
+            <summary>Check time (s)</summary>
+            <description>Set interval checking VPN status</description>
+        </key>
+        <key name="ipnotify" type="b" >
+            <default>true</default>
+            <summary>Notify IP in clipboard</summary>
+            <description>Notify when IP address has been copied to clipboard</description>
+        </key>
+    </schema>
+</schemalist>

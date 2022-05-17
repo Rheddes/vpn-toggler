@@ -1,0 +1,9 @@
+{
+  "name": "VPN Toggler",
+  "gettext-domain": "custom-vpn-toggler@rheddes.nl",
+  "description": "Allow easy toggling of OpenVPN",
+  "uuid": "vpn-toggler@rheddes.nl",
+  "shell-version": [
+    "42"
+  ]
+}
