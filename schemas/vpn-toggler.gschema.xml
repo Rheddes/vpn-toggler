@@ -11,10 +11,5 @@
             <summary>Check time (s)</summary>
             <description>Set interval checking VPN status</description>
         </key>
-        <key name="ipnotify" type="b" >
-            <default>true</default>
-            <summary>Notify IP in clipboard</summary>
-            <description>Notify when IP address has been copied to clipboard</description>
-        </key>
     </schema>
 </schemalist>
