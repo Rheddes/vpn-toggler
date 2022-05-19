@@ -1,6 +1,6 @@
 {
   "name": "VPN Toggler",
-  "description": "Allow easy toggling of OpenVPN",
+  "description": "A forked version of (https://extensions.gnome.org/extension/4061/custom-vpn-toggler/).\n VPN Toggler (and indicator) allows to see the status of a VPN (with its icon), see IP address associated and permit to start and stop VPN (from a menu).\n\nThis plugin required an additional script to interact with VPN. \nAn example for Open VPN is available on extension repository. \nFollow the link to Extension Web Site and see README.",
   "uuid": "vpn-toggler@rheddes.nl",
   "gettext-domain": "vpn-toggler@rheddes.nl",
   "settings-schema": "org.gnome.shell.extensions.vpn-toggler",
