@@ -45,7 +45,7 @@ const STATUS = { error: -1, unknown: 0, connected: 1, disconnected: 2 };
 
 const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button {
     _init() {
-        super._init(0.0);
+        super._init(0.5);
         this._settings = ExtensionUtils.getSettings();
         this._ip = '';
 
