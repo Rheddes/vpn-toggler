@@ -30,20 +30,23 @@ const { GObject, St, Gio, Clutter, GLib } = imports.gi;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
 
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
 
 const ByteArray = imports.byteArray;
+const Gettext = imports.gettext;
+
+const Domain = Gettext.domain(Me.metadata.uuid);
+const _ = Domain.gettext;
 
 const STATUS = { error: -1, unknown: 0, connected: 1, disconnected: 2 };
 
 const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button {
     _init() {
         super._init(0.0);
-        this._settings = Convenience.getSettings();
+        this._settings = ExtensionUtils.getSettings();
         this._ip = '';
 
         /* Icon indicator */
@@ -76,13 +79,13 @@ const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button
         this.vpnSwitch.connect('toggled', this._toggleSwitch.bind(this));
         this.menu.addMenuItem(this.vpnSwitch);
 
-        this.vpnIp = new PopupMenu.PopupMenuItem('Initialization...');
+        this.vpnIp = new PopupMenu.PopupMenuItem(_('Initialization...'));
         this.menu.addMenuItem(this.vpnIp);
 
 
         this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
-        this.settingsMenuItem = new PopupMenu.PopupMenuItem('Settings');
+        this.settingsMenuItem = new PopupMenu.PopupMenuItem(_('Settings'));
         this.settingsMenuItem.connect('activate', () => {
             ExtensionUtils.openPrefs();
             this._prevStatus = STATUS.unknown;
@@ -140,23 +143,23 @@ const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button
                 this._ip = ByteArray.toString(out);
                 this.icon.set_gicon(this.vpnOnIcon);
                 this.vpnSwitch.setSensitive(true);
-                this.vpnSwitch.label.set_text('Disable VPN');
+                this.vpnSwitch.label.set_text(_('Disable VPN'));
                 this.vpnSwitch.setToggleState(true);
-                this.vpnIp.label.set_text(`Connected!\nIP: ${this._ip}`);
+                this.vpnIp.label.set_text(`${_('Connected!')}\nIP: ${this._ip}`);
             } else if (status === STATUS.disconnected) {
                 this._ip = '';
                 this.icon.set_gicon(this.vpnOffIcon);
                 this.vpnSwitch.setSensitive(true);
-                this.vpnSwitch.label.set_text('Enable VPN');
+                this.vpnSwitch.label.set_text(_('Enable VPN'));
                 this.vpnSwitch.setToggleState(false);
-                this.vpnIp.label.set_text('VPN Disconnected');
+                this.vpnIp.label.set_text(_('VPN Disconnected'));
             } else {
                 this._ip = '';
                 this.icon.set_gicon(this.vpnErrorIcon);
                 this.vpnSwitch.setSensitive(false);
-                this.vpnSwitch.label.set_text('Script error');
+                this.vpnSwitch.label.set_text(_('Script error'));
                 this.vpnSwitch.setToggleState(false);
-                this.vpnIp.label.set_text('Please update your settings\nand see help if needed.');
+                this.vpnIp.label.set_text(_('Please update your settings\nand see help if needed.'));
             }
             this._status = status;
         }
@@ -186,6 +189,7 @@ const Indicator = GObject.registerClass(class Indicator extends PanelMenu.Button
 class Extension {
     constructor(uuid) {
         this._uuid = uuid;
+        ExtensionUtils.initTranslations(uuid);
     }
 
     enable() {

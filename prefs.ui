@@ -7,8 +7,8 @@
       <object class="AdwPreferencesGroup">
         <child>
           <object class="AdwActionRow">
-            <property name="title">VPN Script</property>
-            <property name="subtitle">Select VPN command to be use by extension.</property>
+            <property name="title" translatable="yes">VPN Script</property>
+            <property name="subtitle" translatable="yes">Select VPN command to be use by extension.</property>
             <child>
               <object class="GtkButton" id="file-chooser-button">
                 <property name="halign">end</property>
@@ -32,8 +32,8 @@
       <object class="AdwPreferencesGroup">
         <child>
           <object class="AdwActionRow">
-            <property name="title">Check time in seconds</property>
-            <property name="subtitle">Set interval checking VPN status.</property>
+            <property name="title" translatable="yes">Check time in seconds</property>
+            <property name="subtitle" translatable="yes">Set interval checking VPN status.</property>
             <child>
               <object class="GtkSpinButton" id="check-time">
                 <property name="climb-rate">1.0</property>
@@ -48,7 +48,7 @@
     </child>
   </object>
   <object class="GtkFileChooserNative" id="file-chooser">
-    <property name="title">Choose your VPN script</property>
+    <property name="title" translatable="yes">Choose your VPN script</property>
     <property name="select-multiple">0</property>
     <property name="action">open</property>
     <property name="modal">1</property>

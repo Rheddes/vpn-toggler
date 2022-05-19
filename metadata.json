@@ -3,7 +3,7 @@
   "description": "Allow easy toggling of OpenVPN",
   "uuid": "vpn-toggler@rheddes.nl",
   "gettext-domain": "vpn-toggler@rheddes.nl",
-  "settings-schema": "nl.rheddes.vpn-toggler",
+  "settings-schema": "org.gnome.shell.extensions.vpn-toggler",
   "shell-version": [
     "42"
   ],

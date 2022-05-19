@@ -31,34 +31,31 @@ const version = Gtk.get_major_version();
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
-
+const Gettext = imports.gettext;
+const Domain = Gettext.domain(Me.metadata.uuid);
+const _ = Domain.gettext;
 
 function init() {
-}
-
-function _onBtnClicked() {
-  log('I have been clicked');
-  // const vpnScriptSelector = page.get_object('file_chooser');
-  // vpnScriptSelector.show();
+  ExtensionUtils.initTranslations(Me.metadata.uuid);
 }
 
 function fillPreferencesWindow(window) {
   // Use the same GSettings schema as in `extension.js`
-  const settings = Convenience.getSettings();
+  const settings = ExtensionUtils.getSettings();
 
   const builder = Gtk.Builder.new();
   builder.add_from_file(Me.path + '/prefs.ui');
+  builder.set_translation_domain(Me.metadata.uuid);
   const page = builder.get_object('vpn-toggler-pref-page');
   window.add(page);
 
   builder.get_object('explain-label').set_label(`
     <small>
-      <b>VPN command have to implement the following parameters</b>
-       - <b>start</b>: to start VPN - If required, this command could display GUI
-       - <b>stop</b>: to stop VPN.
-       - <b>ip</b>: to get IP address - If not IP is available, this function should return nothing
-      <i>Note: parameter <b>ip</b> is used to determine if VPN is started or not.</i>
+      <b>${_('VPN command have to implement the following parameters')}</b>
+       - <b>start</b>: ${_('to start VPN - If required, this command could display GUI')}
+       - <b>stop</b>: ${_('to stop VPN')}.
+       - <b>ip</b>: ${_('to get IP address - If not IP is available, this function should return nothing')}
+      <i>Note: parameter <b>ip</b> ${_('is used to determine if VPN is started or not.')}</i>
     </small>
   `);
 
