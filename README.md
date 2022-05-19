@@ -1,6 +1,6 @@
 # VPN Toggler
 
-An updated version of <https://gitlab.com/XavierBerger/custom-vpn-toggler> for GNOME 42
+A forked version of <https://gitlab.com/XavierBerger/custom-vpn-toggler> for GNOME 42
 
 ## Gnome Shell extension overview
 
